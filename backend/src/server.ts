@@ -5,7 +5,7 @@ import 'express-async-errors';
 import { allRoutes } from '@routes/index';
 import { AppError } from '@errors/AppError';
 
-import populateDB from '@source/populateDB';
+import populateDB from './populateDB';
 
 const PORT = process.env.PORT || 3333;
 
