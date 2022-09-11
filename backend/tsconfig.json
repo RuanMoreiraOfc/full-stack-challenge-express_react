@@ -33,6 +33,7 @@
       "@users/models/*": ["src/users/models/*"],
       "@users/repositories/*": ["src/users/repositories/*"],
       "@users/useCases/*": ["src/users/useCases/*"],
+      "@controllers/*": ["src/controllers/*"],
 
       "@routes/*": ["src/routes/*"]
     },
