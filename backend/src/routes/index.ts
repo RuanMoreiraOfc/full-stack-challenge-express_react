@@ -20,4 +20,4 @@ routes.get('/', (req, res) => {
 });
 
 routes.use('/auth', authRoutes);
-routes.use('/entries', entriesRoutes);
+routes.use('/entries/en', entriesRoutes);
