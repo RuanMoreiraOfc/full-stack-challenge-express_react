@@ -40,6 +40,7 @@
       "@entries/useCases/*": ["src/entries/useCases/*"],
       "@controllers/*": ["src/controllers/*"],
 
+      "@middlewares/*": ["src/middlewares/*"],
       "@routes/*": ["src/routes/*"],
 
       "@errors/*": ["src/errors/*"],
