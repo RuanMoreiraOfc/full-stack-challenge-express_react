@@ -10,15 +10,12 @@ class SignUpController {
   async handle(request: Request, response: Response) {
     const { name, email, password } = request.body;
 
-    const user = await this.useCase.execute({
+    const json = await this.useCase.execute({
       name,
       email,
       password,
     });
 
-    response.status(201).json({
-      id: user.id,
-      name: user.name,
-    });
+    response.status(201).json(json);
   }
 }
