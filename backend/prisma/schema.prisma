@@ -8,6 +8,8 @@ datasource db {
 }
 
 model User {
+  UserWord UserWord[]
+
   id            String   @id @default(uuid())
   name          String
   email         String   @unique
@@ -18,9 +20,24 @@ model User {
 }
 
 model Word {
+  UserWord UserWord[]
+
   id         String   @id @default(uuid())
   value      String   @unique
   created_at DateTime @default(now())
 
   @@map("words")
+}
+
+model UserWord {
+  User    User   @relation(fields: [user_id], references: [id])
+  user_id String
+  Word    Word   @relation(fields: [word_id], references: [id])
+  word_id String
+
+  id       String  @id @default(uuid())
+  viewed   Boolean
+  favorite Boolean
+
+  @@map("users_words")
 }

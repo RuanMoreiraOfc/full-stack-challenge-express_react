@@ -8,9 +8,10 @@ class ListWordsController {
   constructor(private useCase: IListWordsUseCase) {}
 
   async handle(request: Request, response: Response) {
-    const { search, limit } = request.query;
+    const { page, search, limit } = request.query;
 
     const json = await this.useCase.execute({
+      page,
       search,
       limit,
     });
