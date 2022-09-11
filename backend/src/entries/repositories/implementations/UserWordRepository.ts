@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import { PrismaClientSingleton } from '@utils/PrismaClientSingleton';
 
 import { UserWord } from '@entries/models/UserWord';
 import type {
@@ -12,7 +13,7 @@ export { UserWordRepository };
 class UserWordRepository implements IUserWordRepository {
   private prisma: PrismaClient;
   constructor() {
-    this.prisma = new PrismaClient();
+    this.prisma = PrismaClientSingleton.getInstance().client;
   }
 
   async changeFavoriteState({

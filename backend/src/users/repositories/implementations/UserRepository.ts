@@ -1,5 +1,6 @@
 import { hash } from 'bcrypt';
 import { PrismaClient } from '@prisma/client';
+import { PrismaClientSingleton } from '@utils/PrismaClientSingleton';
 
 import { User } from '@users/models/User';
 import type {
@@ -12,7 +13,7 @@ export { UserRepository };
 class UserRepository implements IUserRepository {
   private prisma: PrismaClient;
   constructor() {
-    this.prisma = new PrismaClient();
+    this.prisma = PrismaClientSingleton.getInstance().client;
   }
 
   async create({ name, email, password }: ICreateUserDTO) {

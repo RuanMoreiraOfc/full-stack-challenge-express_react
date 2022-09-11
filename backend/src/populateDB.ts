@@ -1,9 +1,9 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClientSingleton } from '@utils/PrismaClientSingleton';
 import axios from 'axios';
 
 export default populateDB;
 
-const prisma = new PrismaClient();
+const prisma = PrismaClientSingleton.getInstance().client;
 
 async function populateDB() {
   const wordCount = await prisma.word.count({ take: 1 });

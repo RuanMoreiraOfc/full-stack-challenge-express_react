@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import { PrismaClientSingleton } from '@utils/PrismaClientSingleton';
 
 import { Word } from '@entries/models/Word';
 import type {
@@ -12,7 +13,7 @@ export { WordRepository };
 class WordRepository implements IWordRepository {
   private prisma: PrismaClient;
   constructor() {
-    this.prisma = new PrismaClient();
+    this.prisma = PrismaClientSingleton.getInstance().client;
   }
 
   async findByValue(value: string) {
