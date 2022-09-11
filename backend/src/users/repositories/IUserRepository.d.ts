@@ -1,6 +1,11 @@
 import { IUser } from '@users/models/User';
 
-export type { ICreateUserDTO, IUserRepository };
+export type { ICreateUserDTO, IUserCredentialsDTO, IUserRepository };
+
+interface IUserCredentialsDTO {
+  email: string;
+  password: string;
+}
 
 interface ICreateUserDTO {
   name: string;
