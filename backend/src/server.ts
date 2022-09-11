@@ -5,7 +5,11 @@ import 'express-async-errors';
 import { allRoutes } from '@routes/index';
 import { AppError } from '@errors/AppError';
 
+import populateDB from '@source/populateDB';
+
 const PORT = process.env.PORT || 3333;
+
+populateDB();
 
 const app = express();
 app.use(express.json());
