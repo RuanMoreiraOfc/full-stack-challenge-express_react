@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client';
 
 import { UserWord } from '@entries/models/UserWord';
 import type {
+  IChangeStateUserWordDTO,
   IFindByUserWordDTO,
   IUserWordRepository,
 } from '@entries/repositories/IUserWordRepository';
@@ -12,6 +13,32 @@ class UserWordRepository implements IUserWordRepository {
   private prisma: PrismaClient;
   constructor() {
     this.prisma = new PrismaClient();
+  }
+
+  async changeFavoriteState({
+    state,
+    id,
+    user_id,
+    word_id,
+  }: IChangeStateUserWordDTO) {
+    await this.prisma.userWord.upsert({
+      create: {
+        viewed: true,
+        favorite: state,
+        User: {
+          connect: { id: user_id },
+        },
+        Word: {
+          connect: { id: word_id },
+        },
+      },
+      update: {
+        favorite: state,
+      },
+      where: {
+        id,
+      },
+    });
   }
 
   async findByUserWord({ user_id, word_id }: IFindByUserWordDTO) {
