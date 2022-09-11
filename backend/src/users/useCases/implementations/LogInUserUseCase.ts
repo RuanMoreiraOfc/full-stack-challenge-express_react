@@ -1,5 +1,6 @@
 import { compare } from 'bcrypt';
-import { sign } from 'jsonwebtoken';
+
+import generateToken from '@utils/generateToken';
 
 import { AppError } from '@errors/AppError';
 
@@ -33,10 +34,7 @@ class LogInUserUseCase implements ILogInUserUseCase {
       });
     }
 
-    const token = sign({}, process.env.JWT_SECRET as string, {
-      subject: user.id,
-      expiresIn: '1d',
-    });
+    const token = generateToken({ subject: user.id });
 
     return {
       id: user.id,
