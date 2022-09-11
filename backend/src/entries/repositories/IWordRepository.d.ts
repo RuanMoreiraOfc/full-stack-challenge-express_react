@@ -4,7 +4,7 @@ export type { IWordPaginationDTO, IWordRepository };
 
 interface IWordPaginationDTO {
   search?: string;
-  limit?: number;
+  limit: number;
 }
 
 interface IWordRepository {
