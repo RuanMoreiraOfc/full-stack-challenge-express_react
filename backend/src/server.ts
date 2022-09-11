@@ -13,9 +13,11 @@ app.use(allRoutes);
 app.use(
   (err: Error, _request: Request, response: Response, next: NextFunction) => {
     if (err instanceof AppError) {
+      console.error(err.message);
       return response.status(err.statusCode).json({ message: err.message });
     }
 
+    console.error(err.message);
     return response.status(500).json({ message: 'Internal server error' });
   },
 );
