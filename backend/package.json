@@ -4,8 +4,8 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn -r tsconfig-paths/register src/server.ts"
+    "build": "dotenv -e .env -- tsc",
+    "dev": "dotenv -e .env -- ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn -r tsconfig-paths/register src/server.ts"
   },
   "license": "MIT",
   "devDependencies": {
@@ -13,6 +13,7 @@
     "@types/jsonwebtoken": "^8.5.9",
     "@types/node": "^18.7.16",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
+    "dotenv-cli": "^6.0.0",
     "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard-with-typescript": "^22.0.0",
