@@ -36,6 +36,9 @@
       "@users/models/*": ["src/users/models/*"],
       "@users/repositories/*": ["src/users/repositories/*"],
       "@users/useCases/*": ["src/users/useCases/*"],
+      "@entries/models/*": ["src/entries/models/*"],
+      "@entries/repositories/*": ["src/entries/repositories/*"],
+      "@entries/useCases/*": ["src/entries/useCases/*"],
       "@controllers/*": ["src/controllers/*"],
 
       "@routes/*": ["src/routes/*"],
