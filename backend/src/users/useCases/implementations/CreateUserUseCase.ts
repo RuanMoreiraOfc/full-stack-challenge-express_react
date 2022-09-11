@@ -1,3 +1,5 @@
+import { AppError } from '@errors/AppError';
+
 import {
   ICreateUserDTO,
   IUserRepository,
@@ -13,7 +15,7 @@ class CreateUserUseCase implements ICreateUserUseCase {
     const userAlreadyExists = await this.repository.findByEmail(data.email);
 
     if (userAlreadyExists) {
-      throw new Error('User already exists!');
+      throw new AppError({ message: 'User already exists!', statusCode: 409 });
     }
 
     const user = await this.repository.create(data);
