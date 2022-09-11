@@ -12,4 +12,10 @@ const routes = Router();
 routes.use('/api-docs', swaggerUi.serve);
 routes.get('/api-docs', swaggerUi.setup(swaggerDocument));
 
+routes.get('/', (req, res) => {
+  return res.json({
+    message: 'Fullstack Challenge 🏅 - Dictionary',
+  });
+});
+
 routes.use('/auth', authRoutes);
