@@ -12,6 +12,7 @@ interface IWordPaginationDTO extends IWordPaginationSearchDTO {
 }
 
 interface IWordRepository {
+  findByValue(value: string): Promise<IWord | null>;
   count(data: IWordPaginationSearchDTO): Promise<number>;
   list(data: IWordPaginationDTO): Promise<IWord[]>;
 }

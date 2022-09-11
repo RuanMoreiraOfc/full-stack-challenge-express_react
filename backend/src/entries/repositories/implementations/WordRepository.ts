@@ -15,6 +15,21 @@ class WordRepository implements IWordRepository {
     this.prisma = new PrismaClient();
   }
 
+  async findByValue(value: string) {
+    const wordFromDb = await this.prisma.word.findFirst({
+      where: {
+        value,
+      },
+    });
+
+    const word =
+      wordFromDb === null //
+        ? null
+        : new Word(wordFromDb);
+
+    return word;
+  }
+
   async count({ search }: IWordPaginationSearchDTO) {
     const countFromDb = await this.prisma.word.count({
       where: {
