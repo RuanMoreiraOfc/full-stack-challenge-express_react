@@ -1,5 +1,7 @@
-import { PrismaClientSingleton } from '@utils/PrismaClientSingleton';
 import axios from 'axios';
+
+import getEnv from '@utils/getEnv';
+import { PrismaClientSingleton } from '@utils/PrismaClientSingleton';
 
 export default populateDB;
 
@@ -13,11 +15,9 @@ async function populateDB() {
     return;
   }
 
-  if (process.env.WORDS_ENDPOINT === undefined) {
-    throw new Error('`WORDS_ENDPOINT` not defined');
-  }
+  const env = getEnv('WORDS_ENDPOINT', 'string');
 
-  const response = await axios.get(process.env.WORDS_ENDPOINT);
+  const response = await axios.get(env);
   const words: string[] = response.data.split(/\r?\n/);
   const data = words.map((word) => ({ value: word }));
 

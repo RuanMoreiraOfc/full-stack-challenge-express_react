@@ -2,12 +2,14 @@ import type { Request, Response, NextFunction } from 'express';
 import express from 'express';
 import 'express-async-errors';
 
+import getEnv from '@utils/getEnv';
+
 import { allRoutes } from '@routes/index';
 import { AppError } from '@errors/AppError';
 
 import populateDB from './populateDB';
 
-const PORT = process.env.PORT || 3333;
+const PORT = getEnv('PORT', 'number', 3333);
 
 populateDB();
 
