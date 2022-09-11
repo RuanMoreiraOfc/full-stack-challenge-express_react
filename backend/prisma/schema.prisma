@@ -16,3 +16,11 @@ model User {
 
   @@map("users")
 }
+
+model Word {
+  id         String   @id @default(uuid())
+  value      String   @unique
+  created_at DateTime @default(now())
+
+  @@map("words")
+}
