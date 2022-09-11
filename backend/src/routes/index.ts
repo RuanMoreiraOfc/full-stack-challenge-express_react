@@ -3,6 +3,8 @@ import swaggerDocument from '@public/swagger.json';
 import { Router } from 'express';
 import swaggerUi from 'swagger-ui-express';
 
+import { ensureAuthenticatedMiddleware } from '@middlewares/ensureAuthenticated';
+
 import { authRoutes } from '@routes/auth.routes';
 import { entriesRoutes } from '@routes/entries.routes';
 
@@ -20,4 +22,5 @@ routes.get('/', (req, res) => {
 });
 
 routes.use('/auth', authRoutes);
+routes.use('/entries/en', ensureAuthenticatedMiddleware);
 routes.use('/entries/en', entriesRoutes);
