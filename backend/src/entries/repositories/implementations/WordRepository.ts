@@ -27,9 +27,10 @@ class WordRepository implements IWordRepository {
     return countFromDb;
   }
 
-  async list({ search, limit }: IWordPaginationDTO) {
+  async list({ page, search, limit }: IWordPaginationDTO) {
     const wordsFromDb = await this.prisma.word.findMany({
       take: limit,
+      skip: (page - 1) * limit,
       orderBy: {
         value: 'asc',
       },

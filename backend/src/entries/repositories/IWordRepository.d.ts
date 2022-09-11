@@ -7,6 +7,7 @@ interface IWordPaginationSearchDTO {
 }
 
 interface IWordPaginationDTO extends IWordPaginationSearchDTO {
+  page: number;
   limit: number;
 }
 

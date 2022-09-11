@@ -12,17 +12,28 @@ export { ListWordsUseCase };
 class ListWordsUseCase implements IListWordsUseCase {
   constructor(private repository: IWordRepository) {}
 
-  async execute(data: IWordPaginationDTO): Promise<IListWordsUseCaseResponse> {
-    const words = await this.repository.list(data);
-    const wordValues = words.map(({ value }) => value);
+  async execute({
+    page = 1,
+    search,
+    limit = 20,
+  }: IWordPaginationDTO): Promise<IListWordsUseCaseResponse> {
+    const totalDocs = await this.repository.count({ search });
+    const totalPages = Math.ceil(totalDocs / limit);
+    const hasNext = page < Math.ceil(totalDocs / limit);
+    const hasPrev = page > 1;
+
+    // ***
+
+    const words = await this.repository.list({ page, search, limit });
+    const results = words.map(({ value }) => value);
 
     return {
-      results: wordValues,
-      totalDocs: wordValues.length,
-      page: 1,
-      totalPages: 1,
-      hasNext: false,
-      hasPrev: false,
+      results,
+      totalDocs,
+      page: Number(page),
+      totalPages,
+      hasNext,
+      hasPrev,
     };
   }
 }
