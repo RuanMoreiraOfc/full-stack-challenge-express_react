@@ -1,16 +1,20 @@
 import type { IUserWord } from '@entries/models/UserWord';
 
 export type {
+  ISetStateUserWordDTO,
   IChangeStateUserWordDTO,
   IFindByUserWordDTO,
   IUserWordRepository,
 };
 
-interface IChangeStateUserWordDTO {
-  state: boolean;
-  id: string;
+interface ISetStateUserWordDTO {
   user_id: string;
   word_id: string;
+}
+
+interface IChangeStateUserWordDTO extends ISetStateUserWordDTO {
+  id: string;
+  state: boolean;
 }
 
 interface IFindByUserWordDTO {
@@ -19,6 +23,7 @@ interface IFindByUserWordDTO {
 }
 
 interface IUserWordRepository {
+  setViewedState(data: ISetStateUserWordDTO): Promise<void>;
   changeFavoriteState(data: IChangeStateUserWordDTO): Promise<void>;
   findByUserWord(data: IFindByUserWordDTO): Promise<IUserWord | null>;
 }

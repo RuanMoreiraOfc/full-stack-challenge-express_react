@@ -3,6 +3,7 @@ import { PrismaClientSingleton } from '@utils/PrismaClientSingleton';
 
 import { UserWord } from '@entries/models/UserWord';
 import type {
+  ISetStateUserWordDTO,
   IChangeStateUserWordDTO,
   IFindByUserWordDTO,
   IUserWordRepository,
@@ -14,6 +15,21 @@ class UserWordRepository implements IUserWordRepository {
   private prisma: PrismaClient;
   constructor() {
     this.prisma = PrismaClientSingleton.getInstance().client;
+  }
+
+  async setViewedState({ user_id, word_id }: ISetStateUserWordDTO) {
+    await this.prisma.userWord.create({
+      data: {
+        viewed: true,
+        favorite: false,
+        User: {
+          connect: { id: user_id },
+        },
+        Word: {
+          connect: { id: word_id },
+        },
+      },
+    });
   }
 
   async changeFavoriteState({
