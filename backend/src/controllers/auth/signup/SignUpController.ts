@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express';
 
-import { ICreateUserUseCase } from '@users/useCases/ICreateUserUseCase';
+import type { ICreateUserUseCase } from '@users/useCases/ICreateUserUseCase';
 
 export { SignUpController };
 

@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express';
 
-import { ILogInUserUseCase } from '@users/useCases/ILogInUserUseCase';
+import type { ILogInUserUseCase } from '@users/useCases/ILogInUserUseCase';
 
 export { SignInController };
 

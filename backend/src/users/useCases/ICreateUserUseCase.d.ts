@@ -1,5 +1,5 @@
-import { IUser } from '@users/models/User';
-import { ICreateUserDTO } from '@users/repositories/IUserRepository';
+import type { IUser } from '@users/models/User';
+import type { ICreateUserDTO } from '@users/repositories/IUserRepository';
 
 export type { ICreateUserUseCase };
 

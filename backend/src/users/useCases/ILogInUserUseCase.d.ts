@@ -1,4 +1,4 @@
-import { IUserCredentialsDTO } from '@users/repositories/IUserRepository';
+import type { IUserCredentialsDTO } from '@users/repositories/IUserRepository';
 
 export type { ILogInUserUseCase };
 

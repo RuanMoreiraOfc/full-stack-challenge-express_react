@@ -1,4 +1,4 @@
-import { IUser } from '@users/models/User';
+import type { IUser } from '@users/models/User';
 
 export type { ICreateUserDTO, IUserCredentialsDTO, IUserRepository };
 

@@ -1,10 +1,10 @@
 import { AppError } from '@errors/AppError';
 
-import {
+import type {
   ICreateUserDTO,
   IUserRepository,
 } from '@users/repositories/IUserRepository';
-import { ICreateUserUseCase } from '@users/useCases/ICreateUserUseCase';
+import type { ICreateUserUseCase } from '@users/useCases/ICreateUserUseCase';
 
 export { CreateUserUseCase };
 

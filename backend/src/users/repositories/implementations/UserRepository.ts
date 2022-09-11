@@ -2,7 +2,7 @@ import { hash } from 'bcrypt';
 import { PrismaClient } from '@prisma/client';
 
 import { User } from '@users/models/User';
-import {
+import type {
   ICreateUserDTO,
   IUserRepository,
 } from '@users/repositories/IUserRepository';
