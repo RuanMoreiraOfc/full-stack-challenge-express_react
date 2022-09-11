@@ -1,0 +1,7 @@
+{
+  "$schema": "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.json",
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Dictonary API"
+  }
+}
