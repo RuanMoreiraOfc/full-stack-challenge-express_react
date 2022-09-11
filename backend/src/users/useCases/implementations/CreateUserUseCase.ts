@@ -1,3 +1,5 @@
+import generateToken from '@utils/generateToken';
+
 import { AppError } from '@errors/AppError';
 
 import type {
@@ -20,6 +22,12 @@ class CreateUserUseCase implements ICreateUserUseCase {
 
     const user = await this.repository.create(data);
 
-    return user;
+    const token = generateToken({ subject: user.id });
+
+    return {
+      id: user.id,
+      name: user.name,
+      token,
+    };
   }
 }
