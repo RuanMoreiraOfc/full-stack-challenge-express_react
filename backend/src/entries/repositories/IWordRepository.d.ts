@@ -1,12 +1,16 @@
 import type { IWord } from '@entries/models/Word';
 
-export type { IWordPaginationDTO, IWordRepository };
+export type { IWordPaginationSearchDTO, IWordPaginationDTO, IWordRepository };
 
-interface IWordPaginationDTO {
+interface IWordPaginationSearchDTO {
   search?: string;
+}
+
+interface IWordPaginationDTO extends IWordPaginationSearchDTO {
   limit: number;
 }
 
 interface IWordRepository {
+  count(data: IWordPaginationSearchDTO): Promise<number>;
   list(data: IWordPaginationDTO): Promise<IWord[]>;
 }
