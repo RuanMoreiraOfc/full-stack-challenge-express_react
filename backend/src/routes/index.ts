@@ -4,6 +4,7 @@ import { Router } from 'express';
 import swaggerUi from 'swagger-ui-express';
 
 import { authRoutes } from '@routes/auth.routes';
+import { entriesRoutes } from '@routes/entries.routes';
 
 export { routes as allRoutes };
 
@@ -19,3 +20,4 @@ routes.get('/', (req, res) => {
 });
 
 routes.use('/auth', authRoutes);
+routes.use('/entries', entriesRoutes);
