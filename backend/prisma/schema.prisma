@@ -7,7 +7,19 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Jwt {
+  User    User   @relation(fields: [user_id], references: [id])
+  user_id String @unique
+
+  id         String   @id @default(uuid())
+  value      String   @unique
+  created_at DateTime @default(now())
+
+  @@map("jwts")
+}
+
 model User {
+  Jwt      Jwt?
   UserWord UserWord[]
 
   id            String   @id @default(uuid())
