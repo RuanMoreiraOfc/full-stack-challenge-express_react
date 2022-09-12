@@ -22,7 +22,7 @@ class CreateUserUseCase implements ICreateUserUseCase {
 
     const user = await this.repository.create(data);
 
-    const token = generateToken({ subject: user.id });
+    const token = await generateToken({ subject: user.id });
 
     return {
       id: user.id,

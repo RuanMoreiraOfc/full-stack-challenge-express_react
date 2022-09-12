@@ -34,7 +34,7 @@ class LogInUserUseCase implements ILogInUserUseCase {
       });
     }
 
-    const token = generateToken({ subject: user.id });
+    const token = await generateToken({ subject: user.id });
 
     return {
       id: user.id,
