@@ -44,6 +44,7 @@ interface IFindByUserWordDTO {
 interface IUserWordRepository {
   setViewedState(data: ISetStateUserWordDTO): Promise<void>;
   changeFavoriteState(data: IChangeStateUserWordDTO): Promise<void>;
+  count(data: IUserWordPaginationSearchDTO): Promise<number>;
   list(data: IUserWordPaginationDTO): Promise<IUserWordMainInfo[]>;
   findByUserWord(data: IFindByUserWordDTO): Promise<IUserWord | null>;
 }

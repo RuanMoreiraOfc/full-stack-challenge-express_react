@@ -8,6 +8,7 @@ import type {
   IFindByUserWordDTO,
   IUserWordRepository,
   IUserWordMainInfo,
+  IUserWordPaginationSearchDTO,
   IUserWordPaginationDTO,
 } from '@entries/repositories/IUserWordRepository';
 
@@ -58,6 +59,18 @@ class UserWordRepository implements IUserWordRepository {
         id,
       },
     });
+  }
+
+  async count({ user_id, favorite, viewed }: IUserWordPaginationSearchDTO) {
+    const relationsCountFromDb = await this.prisma.userWord.count({
+      where: {
+        user_id,
+        favorite,
+        viewed,
+      },
+    });
+
+    return relationsCountFromDb;
   }
 
   async list({
