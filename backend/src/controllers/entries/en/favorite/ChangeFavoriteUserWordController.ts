@@ -11,11 +11,11 @@ class ChangeFavoriteUserWordController {
 
   async handle(request: Request, response: Response) {
     const { word } = request.params;
-    const state = request.method === 'DELETE';
+    const statePositive = request.method !== 'DELETE';
     const user_id = getUserIdFromToken(request);
 
     await this.useCase.execute({
-      state,
+      state: statePositive,
       word,
       user_id,
     });
