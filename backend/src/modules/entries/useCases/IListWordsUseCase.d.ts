@@ -1,8 +1,8 @@
 import type { IWordPaginationDTO } from '@entries/repositories/IWordRepository';
 
-export type { IListWordsUseCase, IResponse as IListWordsUseCaseResponse };
+export type { IListWordsUseCase, IListWordsUseCaseResponse };
 
-interface IResponse {
+interface IListWordsUseCaseResponse {
   results: string[];
   totalDocs: number;
   page: number;
@@ -12,5 +12,5 @@ interface IResponse {
 }
 
 interface IListWordsUseCase {
-  execute(data: IWordPaginationDTO): Promise<IResponse>;
+  execute(data: IWordPaginationDTO): Promise<IListWordsUseCaseResponse>;
 }

@@ -6,10 +6,10 @@ import type {
 
 export type {
   IListViewedUsersWordsUseCase,
-  IResponse as IListViewedUsersWordsUseCaseResponse,
+  IListViewedUsersWordsUseCaseResponse,
 };
 
-interface IResponse {
+interface IListViewedUsersWordsUseCaseResponse {
   results: IUserWordMainInfo[];
   totalDocs: number;
   page: number;
@@ -19,5 +19,7 @@ interface IResponse {
 }
 
 interface IListViewedUsersWordsUseCase {
-  execute(data: IUserWordPaginationDTO): Promise<IResponse>;
+  execute(
+    data: IUserWordPaginationDTO,
+  ): Promise<IListViewedUsersWordsUseCaseResponse>;
 }

@@ -1,14 +1,11 @@
-export type {
-  IShowUserProfileUseCase,
-  IResponse as IShowUserProfileUseCaseResponse,
-};
+export type { IShowUserProfileUseCase, IShowUserProfileUseCaseResponse };
 
-interface IResponse {
+interface IShowUserProfileUseCaseResponse {
   id: string;
   name: string;
   email: string;
 }
 
 interface IShowUserProfileUseCase {
-  execute(id: string): Promise<IResponse>;
+  execute(id: string): Promise<IShowUserProfileUseCaseResponse>;
 }

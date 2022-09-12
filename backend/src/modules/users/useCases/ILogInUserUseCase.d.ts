@@ -1,13 +1,13 @@
 import type { IUserCredentialsDTO } from '@users/repositories/IUserRepository';
 
-export type { ILogInUserUseCase };
+export type { ILogInUserUseCase, ILogInUserUseCaseResponse };
 
-interface IResponse {
+interface ILogInUserUseCaseResponse {
   id: string;
   name: string;
   token: string;
 }
 
 interface ILogInUserUseCase {
-  execute(data: IUserCredentialsDTO): Promise<IResponse>;
+  execute(data: IUserCredentialsDTO): Promise<ILogInUserUseCaseResponse>;
 }
