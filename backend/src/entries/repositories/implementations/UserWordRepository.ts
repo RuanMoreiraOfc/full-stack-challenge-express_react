@@ -7,6 +7,8 @@ import type {
   IChangeStateUserWordDTO,
   IFindByUserWordDTO,
   IUserWordRepository,
+  IUserWordMainInfo,
+  IUserWordPaginationDTO,
 } from '@entries/repositories/IUserWordRepository';
 
 export { UserWordRepository };
@@ -56,6 +58,42 @@ class UserWordRepository implements IUserWordRepository {
         id,
       },
     });
+  }
+
+  async list({
+    user_id,
+    favorite,
+    viewed,
+    page,
+    limit,
+  }: IUserWordPaginationDTO): Promise<IUserWordMainInfo[]> {
+    const relationsFromDb = await this.prisma.userWord.findMany({
+      select: {
+        Word: {
+          select: {
+            value: true,
+          },
+        },
+        created_at: true,
+      },
+      take: limit,
+      skip: (page - 1) * limit,
+      orderBy: {
+        created_at: 'asc',
+      },
+      where: {
+        user_id,
+        favorite,
+        viewed,
+      },
+    });
+
+    const relations = relationsFromDb.map((relation) => ({
+      word: relation.Word!.value,
+      added: relation.created_at,
+    }));
+
+    return relations;
   }
 
   async findByUserWord({ user_id, word_id }: IFindByUserWordDTO) {

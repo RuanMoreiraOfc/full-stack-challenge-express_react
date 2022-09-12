@@ -3,6 +3,9 @@ import type { IUserWord } from '@entries/models/UserWord';
 export type {
   ISetStateUserWordDTO,
   IChangeStateUserWordDTO,
+  IUserWordMainInfo,
+  IUserWordPaginationSearchDTO,
+  IUserWordPaginationDTO,
   IFindByUserWordDTO,
   IUserWordRepository,
 };
@@ -17,6 +20,22 @@ interface IChangeStateUserWordDTO extends ISetStateUserWordDTO {
   state: boolean;
 }
 
+interface IUserWordMainInfo {
+  word: string;
+  added: Date;
+}
+
+interface IUserWordPaginationSearchDTO {
+  user_id: string;
+  viewed?: boolean;
+  favorite?: boolean;
+}
+
+interface IUserWordPaginationDTO extends IUserWordPaginationSearchDTO {
+  page: number;
+  limit: number;
+}
+
 interface IFindByUserWordDTO {
   user_id: string;
   word_id: string;
@@ -25,5 +44,6 @@ interface IFindByUserWordDTO {
 interface IUserWordRepository {
   setViewedState(data: ISetStateUserWordDTO): Promise<void>;
   changeFavoriteState(data: IChangeStateUserWordDTO): Promise<void>;
+  list(data: IUserWordPaginationDTO): Promise<IUserWordMainInfo[]>;
   findByUserWord(data: IFindByUserWordDTO): Promise<IUserWord | null>;
 }
