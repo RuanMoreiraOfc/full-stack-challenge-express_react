@@ -2,8 +2,7 @@ import type { SignOptions } from 'jsonwebtoken';
 import { sign } from 'jsonwebtoken';
 
 import { PrismaClientSingleton } from '@utils/PrismaClientSingleton';
-
-import { AppError } from '@errors/AppError';
+import getEnv from '@utils/getEnv';
 
 export default generateToken;
 
@@ -14,14 +13,7 @@ type SignOptionsFiltered = SignOptions & {
 const prisma = PrismaClientSingleton.getInstance().client;
 
 async function generateToken(options: SignOptionsFiltered) {
-  const JWT_SECRET = process.env.JWT_SECRET;
-
-  if (JWT_SECRET === undefined) {
-    throw new AppError({
-      statusCode: 503,
-      message: 'Internal misconfiguration',
-    });
-  }
+  const JWT_SECRET = getEnv('JWT_SECRET', 'string');
 
   const jwt = sign({}, JWT_SECRET, {
     expiresIn: '1d',

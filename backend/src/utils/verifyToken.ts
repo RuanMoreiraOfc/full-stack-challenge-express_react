@@ -3,6 +3,7 @@ import type { SignOptions } from 'jsonwebtoken';
 import { verify } from 'jsonwebtoken';
 
 import { PrismaClientSingleton } from '@utils/PrismaClientSingleton';
+import getEnv from '@utils/getEnv';
 
 import { AppError } from '@errors/AppError';
 
@@ -13,14 +14,7 @@ const prisma = PrismaClientSingleton.getInstance().client;
 async function verifyToken(request: Request, options?: SignOptions) {
   const [, headerToken] = request.headers['authorization']?.split(' ') || [];
 
-  const JWT_SECRET = process.env.JWT_SECRET;
-
-  if (JWT_SECRET === undefined) {
-    throw new AppError({
-      statusCode: 503,
-      message: 'Internal misconfiguration',
-    });
-  }
+  const JWT_SECRET = getEnv('JWT_SECRET', 'string');
 
   try {
     const { sub: user_id, exp } = verify(headerToken, JWT_SECRET, options) as {
