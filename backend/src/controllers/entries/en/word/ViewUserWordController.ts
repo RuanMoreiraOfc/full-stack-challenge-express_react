@@ -1,5 +1,5 @@
 import type { Request, Response } from 'express';
-import { default as proxyResolver } from 'request';
+import axios from 'axios';
 
 import getEnv from '@utils/getEnv';
 import getUserIdFromToken from '@utils/getUserIdFromToken';
@@ -20,7 +20,8 @@ class ViewUserWordController {
       user_id,
     });
 
-    const URL_PROXY = `${getEnv('DICTIONARY_API_ENDPOINT', 'string')}/${word}`;
-    proxyResolver(URL_PROXY).pipe(response);
+    const URL = `${getEnv('DICTIONARY_API_ENDPOINT', 'string')}/${word}`;
+    const apiResponse = await axios.get(URL);
+    return response.json(apiResponse.data);
   }
 }
