@@ -15,14 +15,12 @@ class ListFavoriteUsersWordsUseCase implements IListFavoriteUsersWordsUseCase {
   async execute({
     user_id,
     favorite,
-    viewed,
     limit,
     page,
   }: IUserWordPaginationDTO): Promise<IListFavoriteUsersWordsUseCaseResponse> {
     const totalDocs = await this.repository.count({
       user_id,
       favorite,
-      viewed,
     });
     const totalPages = Math.ceil(totalDocs / limit);
     const hasNext = page < Math.ceil(totalDocs / limit);
@@ -33,7 +31,6 @@ class ListFavoriteUsersWordsUseCase implements IListFavoriteUsersWordsUseCase {
     const results = await this.repository.list({
       user_id,
       favorite,
-      viewed,
       page,
       limit,
     });
