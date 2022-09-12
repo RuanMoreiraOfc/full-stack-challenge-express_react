@@ -32,12 +32,12 @@
     "paths": {                                           /* Specify a set of entries that re-map imports to additional lookup locations. */
       "@utils/*": ["src/utils/*"],
 
-      "@users/models/*": ["src/users/models/*"],
-      "@users/repositories/*": ["src/users/repositories/*"],
-      "@users/useCases/*": ["src/users/useCases/*"],
-      "@entries/models/*": ["src/entries/models/*"],
-      "@entries/repositories/*": ["src/entries/repositories/*"],
-      "@entries/useCases/*": ["src/entries/useCases/*"],
+      "@users/models/*": ["src/modules/users/models/*"],
+      "@users/repositories/*": ["src/modules/users/repositories/*"],
+      "@users/useCases/*": ["src/modules/users/useCases/*"],
+      "@entries/models/*": ["src/modules/entries/models/*"],
+      "@entries/repositories/*": ["src/modules/entries/repositories/*"],
+      "@entries/useCases/*": ["src/modules/entries/useCases/*"],
       "@controllers/*": ["src/controllers/*"],
 
       "@middlewares/*": ["src/middlewares/*"],
