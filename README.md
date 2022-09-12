@@ -8,6 +8,10 @@ Dictionary Fullstack Application, with user history and favorites route.
 
 > This is a challenge by Coodesh
 
+- Frontend [:eye: Preview][btn-frontend-preview]
+
+- Backend [:eye: Preview][btn-backend-preview]
+
 ## Technologies
 
 ### Frontend
@@ -60,6 +64,8 @@ First of all verify if you have this applications installed on your pc!
 [btn-git]: https://git-scm.com/downloads
 [btn-node]: https://nodejs.org/en/download/
 [btn-repo]: https://github.com/ruanmoreiraofc/full-stack-challenge-express+react
+[btn-backend-preview]: https://fullstack-challenge-api.ruanmoreira.com
+[btn-frontend-preview]: https://fullstack-challenge.ruanmoreira.com
 
 <!-- TECHNOLOGIES -->
 
