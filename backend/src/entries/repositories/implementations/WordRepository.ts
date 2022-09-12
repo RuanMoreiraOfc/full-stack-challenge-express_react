@@ -47,9 +47,6 @@ class WordRepository implements IWordRepository {
     const wordsFromDb = await this.prisma.word.findMany({
       take: limit,
       skip: (page - 1) * limit,
-      orderBy: {
-        value: 'asc',
-      },
       where: {
         value: {
           startsWith: search,
