@@ -15,11 +15,15 @@ async function populateDB() {
     return;
   }
 
-  const env = getEnv('WORDS_ENDPOINT', 'string');
+  console.log('======== POPULATE STARTED ========');
+  const allWordsEndpoint = getEnv('WORDS_ENDPOINT', 'string');
+  const populateHardPermission = getEnv('POPULATE_HARD', 'boolean', false);
 
-  const response = await axios.get(env);
+  const response = await axios.get(allWordsEndpoint);
   const words: string[] = response.data.split(/\r?\n/);
   const data = words.map((word) => ({ value: word }));
+  const totalCount = data.length;
+  console.log(`total: ${totalCount} words`);
 
   let pool: { value: string }[] = [];
   while (data.length > 0) {
@@ -33,8 +37,15 @@ async function populateDB() {
       }
     }
 
-    await prisma.word.createMany({ data: pool });
-    pool = [];
+    if (populateHardPermission) {
+      await prisma.word.createMany({ data });
+      break;
+    } else {
+      console.log('======== ADDING 100 WORDS ========');
+      console.log(`state: ${1 - data.length / totalCount}%`);
+      await prisma.word.createMany({ data: pool });
+      pool = [];
+    }
   }
 
   console.log('======== DATABASE POPULATED ========');
