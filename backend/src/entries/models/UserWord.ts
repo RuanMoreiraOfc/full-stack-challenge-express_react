@@ -27,4 +27,8 @@ class UserWord implements IUserWord {
   get viewed() {
     return this.data.viewed;
   }
+
+  get created_at() {
+    return this.data.created_at;
+  }
 }
