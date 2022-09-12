@@ -12,7 +12,7 @@ class ChangeFavoriteUserWordController {
   async handle(request: Request, response: Response) {
     const { word } = request.params;
     const state = request.method === 'DELETE';
-    const user_id = verifyToken(request);
+    const user_id = await verifyToken(request);
 
     await this.useCase.execute({
       state,

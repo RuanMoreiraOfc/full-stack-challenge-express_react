@@ -9,12 +9,12 @@ export { ensureAuthenticatedMiddleware };
 
 const prisma = PrismaClientSingleton.getInstance().client;
 
-function ensureAuthenticatedMiddleware(
+async function ensureAuthenticatedMiddleware(
   request: Request,
   response: Response,
   next: NextFunction,
 ) {
-  const id = verifyToken(request);
+  const id = await verifyToken(request);
 
   const user = prisma.user.findFirst({
     where: {

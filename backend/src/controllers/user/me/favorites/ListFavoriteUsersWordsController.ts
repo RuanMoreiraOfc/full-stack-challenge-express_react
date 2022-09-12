@@ -11,7 +11,7 @@ class ListFavoriteUsersWordsController {
 
   async handle(request: Request, response: Response) {
     const { page, limit } = request.query;
-    const user_id = verifyToken(request);
+    const user_id = await verifyToken(request);
 
     const json = await this.useCase.execute({
       user_id,
