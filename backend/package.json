@@ -4,8 +4,9 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "build": "dotenv -e .env -- tsc",
-    "dev": "dotenv -e .env -- ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn -r tsconfig-paths/register src/server.ts"
+    "dev": "dotenv -e .env -- ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn -r tsconfig-paths/register src/server.ts",
+    "build": "tsc",
+    "start": "dotenv -e .env.production -- node -r tsconfig-paths/register ./build/src/server.js"
   },
   "license": "MIT",
   "devDependencies": {
