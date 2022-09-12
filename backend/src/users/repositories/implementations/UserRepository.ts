@@ -16,6 +16,21 @@ class UserRepository implements IUserRepository {
     this.prisma = PrismaClientSingleton.getInstance().client;
   }
 
+  async show(id: string) {
+    const userOnDb = await this.prisma.user.findFirst({
+      where: {
+        id,
+      },
+    });
+
+    const user =
+      userOnDb === null //
+        ? null
+        : new User(userOnDb);
+
+    return user;
+  }
+
   async create({ name, email, password }: ICreateUserDTO) {
     const password_hash = await hash(password, 10);
 

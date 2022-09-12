@@ -14,6 +14,7 @@ interface ICreateUserDTO {
 }
 
 interface IUserRepository {
+  show(id: string): Promise<IUser | null>;
   create(data: ICreateUserDTO): Promise<IUser>;
   findByEmail(email: string): Promise<IUser | null>;
 }
