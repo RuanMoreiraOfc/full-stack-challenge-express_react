@@ -47,10 +47,11 @@ model UserWord {
   Word    Word   @relation(fields: [word_id], references: [id])
   word_id String
 
-  id         String   @id @default(uuid())
-  viewed     Boolean
-  favorite   Boolean
-  created_at DateTime @default(now())
+  id           String   @id @default(uuid())
+  viewed       Boolean
+  favorite     Boolean
+  viewed_at    DateTime @default(now())
+  favorited_at DateTime @default(now())
 
   @@map("users_words")
 }

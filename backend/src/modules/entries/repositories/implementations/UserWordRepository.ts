@@ -54,6 +54,7 @@ class UserWordRepository implements IUserWordRepository {
       },
       update: {
         favorite: state,
+        favorited_at: new Date(),
       },
       where: {
         id,
@@ -80,6 +81,8 @@ class UserWordRepository implements IUserWordRepository {
     page,
     limit,
   }: IUserWordPaginationDTO): Promise<IUserWordMainInfo[]> {
+    const isFavoriteView = Boolean(favorite);
+
     const relationsFromDb = await this.prisma.userWord.findMany({
       select: {
         Word: {
@@ -87,12 +90,14 @@ class UserWordRepository implements IUserWordRepository {
             value: true,
           },
         },
-        created_at: true,
+        viewed_at: true,
+        favorited_at: true,
       },
       take: limit,
       skip: (page - 1) * limit,
       orderBy: {
-        created_at: 'asc',
+        viewed_at: isFavoriteView ? undefined : 'asc',
+        favorited_at: isFavoriteView ? 'asc' : undefined,
       },
       where: {
         user_id,
@@ -103,7 +108,7 @@ class UserWordRepository implements IUserWordRepository {
 
     const relations = relationsFromDb.map((relation) => ({
       word: relation.Word!.value,
-      added: relation.created_at,
+      added: isFavoriteView ? relation.favorited_at : relation.viewed_at,
     }));
 
     return relations;
