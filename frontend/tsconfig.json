@@ -21,6 +21,7 @@
       "@styles/*": ["src/styles/*"],
       "@public/*": ["public/*"],
 
+      "@middlewares/*": ["src/middlewares/*"],
       "@components/*": ["src/components/*"],
       "@pages/*": ["src/pages/*"],
     },
