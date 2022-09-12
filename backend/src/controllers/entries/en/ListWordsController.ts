@@ -11,9 +11,9 @@ class ListWordsController {
     const { page, search, limit } = request.query;
 
     const json = await this.useCase.execute({
-      page,
-      search,
-      limit,
+      page: Number(page) || 1,
+      search: search ? String(search) : '',
+      limit: Number(limit) || 20,
     });
 
     response.json(json);

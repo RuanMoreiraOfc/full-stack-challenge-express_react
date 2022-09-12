@@ -13,9 +13,9 @@ class ListWordsUseCase implements IListWordsUseCase {
   constructor(private repository: IWordRepository) {}
 
   async execute({
-    page = 1,
+    page,
     search,
-    limit = 20,
+    limit,
   }: IWordPaginationDTO): Promise<IListWordsUseCaseResponse> {
     const totalDocs = await this.repository.count({ search });
     const totalPages = Math.ceil(totalDocs / limit);
