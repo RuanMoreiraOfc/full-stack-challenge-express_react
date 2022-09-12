@@ -11,7 +11,7 @@ import populateDB from './populateDB';
 
 const PORT = getEnv('PORT', 'number', 3333);
 
-// populateDB();
+populateDB();
 
 const app = express();
 app.use(express.json());

@@ -21,6 +21,21 @@ async function populateDB() {
   const words: string[] = response.data.split(/\r?\n/);
   const data = words.map((word) => ({ value: word }));
 
-  await prisma.word.createMany({ data });
+  let pool: { value: string }[] = [];
+  while (data.length > 0) {
+    populatePool: {
+      if (pool.length < 100) {
+        const value = data.shift();
+        if (value === undefined) {
+          break populatePool;
+        }
+        pool.push(value);
+      }
+    }
+
+    await prisma.word.createMany({ data: pool });
+    pool = [];
+  }
+
   console.log('======== DATABASE POPULATED ========');
 }
