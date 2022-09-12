@@ -2,7 +2,7 @@ import type { Request, Response } from 'express';
 import { default as proxyResolver } from 'request';
 
 import getEnv from '@utils/getEnv';
-import verifyToken from '@utils/verifyToken';
+import getUserIdFromToken from '@utils/getUserIdFromToken';
 
 import type { IViewUserWordUseCase } from '@entries/useCases/IViewUserWordUseCase';
 
@@ -13,7 +13,7 @@ class ViewUserWordController {
 
   async handle(request: Request, response: Response) {
     const { word } = request.params;
-    const user_id = await verifyToken(request);
+    const user_id = getUserIdFromToken(request);
 
     await this.useCase.execute({
       word,

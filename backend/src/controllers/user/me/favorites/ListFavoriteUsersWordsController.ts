@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express';
 
-import verifyToken from '@utils/verifyToken';
+import getUserIdFromToken from '@utils/getUserIdFromToken';
 
 import type { IListFavoriteUsersWordsUseCase } from '@entries/useCases/IListFavoriteUsersWordsUseCase';
 
@@ -11,7 +11,7 @@ class ListFavoriteUsersWordsController {
 
   async handle(request: Request, response: Response) {
     const { page, limit } = request.query;
-    const user_id = await verifyToken(request);
+    const user_id = getUserIdFromToken(request);
 
     const json = await this.useCase.execute({
       user_id,

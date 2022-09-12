@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express';
 
-import verifyToken from '@utils/verifyToken';
+import getUserIdFromToken from '@utils/getUserIdFromToken';
 
 import type { IChangeFavoriteUserWordUseCase } from '@entries/useCases/IChangeFavoriteUserWordUseCase';
 
@@ -12,7 +12,7 @@ class ChangeFavoriteUserWordController {
   async handle(request: Request, response: Response) {
     const { word } = request.params;
     const state = request.method === 'DELETE';
-    const user_id = await verifyToken(request);
+    const user_id = getUserIdFromToken(request);
 
     await this.useCase.execute({
       state,
