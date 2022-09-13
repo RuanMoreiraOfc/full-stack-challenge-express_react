@@ -9,11 +9,12 @@ export default App;
 function App() {
    return (
       <Router>
-         <EnsureAuthenticated />
-         <Routes>
-            <Route path='/signin' element={<SignIn />} />
-            <Route path='/signup' element={<SignUp />} />
-         </Routes>
+         <EnsureAuthenticated>
+            <Routes>
+               <Route path='/signin' element={<SignIn />} />
+               <Route path='/signup' element={<SignUp />} />
+            </Routes>
+         </EnsureAuthenticated>
       </Router>
    );
 }
