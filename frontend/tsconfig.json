@@ -21,6 +21,7 @@
       "@styles/*": ["src/styles/*"],
       "@public/*": ["public/*"],
 
+      "@services/*": ["src/services/*"],
       "@utils/*": ["src/utils/*"],
       "@middlewares/*": ["src/middlewares/*"],
       "@components/*": ["src/components/*"],
