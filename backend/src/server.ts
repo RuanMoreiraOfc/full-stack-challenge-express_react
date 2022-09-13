@@ -1,5 +1,6 @@
 import type { Request, Response, NextFunction } from 'express';
 import express from 'express';
+import cors from 'cors';
 import 'express-async-errors';
 
 import getEnv from '@utils/getEnv';
@@ -15,6 +16,17 @@ populateDB();
 
 const app = express();
 app.use(express.json());
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (origin?.startsWith('http://localhost:')) {
+        callback(null, true);
+      } else {
+        callback(new Error());
+      }
+    },
+  }),
+);
 app.use(allRoutes);
 app.use(
   (err: Error, _request: Request, response: Response, next: NextFunction) => {
