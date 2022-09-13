@@ -10,7 +10,7 @@ function EnsureAuthenticated() {
    const navigate = useNavigate();
 
    useEffect(() => {
-      const token = Cookies.get('token');
+      const token = Cookies.get('jwt_token');
 
       if (token) {
          if (['/signin', '/signup'].includes(location.pathname)) {

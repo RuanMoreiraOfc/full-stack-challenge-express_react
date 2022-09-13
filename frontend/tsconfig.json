@@ -26,6 +26,6 @@
       "@pages/*": ["src/pages/*"],
     },
   },
-  "include": ["src"],
+  "include": ["src", "@types/cookies.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
