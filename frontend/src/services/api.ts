@@ -1,5 +1,4 @@
 import type { Never } from '@~types/never';
-import type { UnsetResolve } from '@~types/unsetResolve';
 
 import type { AxiosResponse, AxiosError, AxiosRequestConfig } from 'axios';
 import axios from 'axios';
@@ -7,8 +6,19 @@ import axios from 'axios';
 import getEnv from '@utils/getEnv';
 
 export { apiGet, apiPost, apiPut, apiDelete };
+export type { HttpProps, ConfigRequest, ResolvedResponse };
 
-type ConfigRequest<TParams, TBody> = AxiosRequestConfig & {
+type HttpProps = {
+  params?: unknown;
+  body?: unknown;
+  success?: unknown;
+  error?: unknown;
+};
+
+type ConfigRequest<TParams, TBody = never> = Omit<
+  AxiosRequestConfig,
+  'data' | 'params' | 'url'
+> & {
   data?: TBody;
   params?: TParams;
 };
@@ -34,16 +44,11 @@ const createApi = <Method extends 'GET' | 'POST' | 'PUT' | 'DELETE'>(
   });
 
   return async function <
-    T extends {
-      params?: unknown;
-      body?: unknown;
-      success?: unknown;
-      error?: unknown;
-    },
-    Params = UnsetResolve<T['params']>,
-    Body = UnsetResolve<T['body']>,
-    Response = UnsetResolve<T['success']>,
-    ResponseOnError = UnsetResolve<T['error']>,
+    T extends HttpProps,
+    Params = T['params'],
+    Body = Method extends 'GET' ? never : T['body'],
+    Response = T['success'],
+    ResponseOnError = T['error'],
   >(
     pathname: string,
     config?: ConfigRequest<Params, Body>,
