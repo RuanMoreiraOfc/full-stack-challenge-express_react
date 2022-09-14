@@ -5,7 +5,7 @@ import { apiPost } from '@services/api';
 
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useToast } from '@chakra-ui/react';
+import useErrorToast from '@hooks/useErrorToast';
 
 import { Heading } from '@chakra-ui/react';
 import { Helmet } from 'react-helmet';
@@ -16,7 +16,7 @@ import FormInput from '@components/FormInput';
 export default SignIn;
 
 function SignIn() {
-   const toast = useToast();
+   const { openToast } = useErrorToast();
    const navigate = useNavigate();
 
    const submitHandler = useCallback(
@@ -42,24 +42,12 @@ function SignIn() {
          });
 
          if (error) {
-            const id = 'toast-error';
-
-            if (toast.isActive(id)) {
-               return;
-            }
-
             const title =
-               error.response?.status === 500
-                  ? 'Something went wrong!'
-                  : error?.response?.data.message;
+               (error.response?.status === 500
+                  ? null
+                  : error?.response?.data.message) ?? 'Something went wrong!';
 
-            toast({
-               id,
-               status: 'error',
-               duration: 2000,
-               position: 'top-right',
-               title,
-            });
+            openToast({ title });
             return;
          }
 
