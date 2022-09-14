@@ -7,7 +7,7 @@ import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useErrorToast from '@hooks/useErrorToast';
 
-import { Heading } from '@chakra-ui/react';
+import { Grid, Heading } from '@chakra-ui/react';
 import { Helmet } from 'react-helmet';
 import FormBox from '@components/FormBox';
 import FormInput from '@components/FormInput';
@@ -60,31 +60,39 @@ function SignUp() {
    );
 
    return (
-      <FormBox onSubmit={submitHandler as FormEventHandler}>
-         <Helmet>
-            <title>Sign Up | FullStack Challenge</title>
-         </Helmet>
+      <Grid
+         as='main'
+         data-limited-box
+         h='100vh'
+         placeItems='center'
+         alignContent='center'
+      >
+         <FormBox onSubmit={submitHandler as FormEventHandler}>
+            <Helmet>
+               <title>Sign Up | FullStack Challenge</title>
+            </Helmet>
 
-         <Heading as='h1' mb='20' textAlign='center'>
-            Sign Up
-         </Heading>
+            <Heading as='h1' mb='20' textAlign='center'>
+               Sign Up
+            </Heading>
 
-         <FormInput //
-            label='name'
-            name='name'
-         />
-         <FormInput //
-            label='email'
-            type='email'
-            name='email'
-         />
-         <FormInput //
-            label='password'
-            type='password'
-            name='password'
-         />
+            <FormInput //
+               label='name'
+               name='name'
+            />
+            <FormInput //
+               label='email'
+               type='email'
+               name='email'
+            />
+            <FormInput //
+               label='password'
+               type='password'
+               name='password'
+            />
 
-         <FormChoice to='/signin' linkText='Sign In' buttonText='Sign Up' />
-      </FormBox>
+            <FormChoice to='/signin' linkText='Sign In' buttonText='Sign Up' />
+         </FormBox>
+      </Grid>
    );
 }

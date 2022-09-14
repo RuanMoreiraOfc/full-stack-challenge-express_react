@@ -7,7 +7,7 @@ import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useErrorToast from '@hooks/useErrorToast';
 
-import { Heading } from '@chakra-ui/react';
+import { Grid, Heading } from '@chakra-ui/react';
 import { Helmet } from 'react-helmet';
 import FormBox from '@components/FormBox';
 import FormChoice from '@components/FormChoice';
@@ -58,27 +58,35 @@ function SignIn() {
    );
 
    return (
-      <FormBox onSubmit={submitHandler as FormEventHandler<HTMLElement>}>
-         <Helmet>
-            <title>Sign In | FullStack Challenge</title>
-         </Helmet>
+      <Grid
+         as='main'
+         data-limited-box
+         h='100vh'
+         placeItems='center'
+         alignContent='center'
+      >
+         <FormBox onSubmit={submitHandler as FormEventHandler<HTMLElement>}>
+            <Helmet>
+               <title>Sign In | FullStack Challenge</title>
+            </Helmet>
 
-         <Heading as='h1' mb='20' textAlign='center'>
-            Sign In
-         </Heading>
+            <Heading as='h1' mb='20' textAlign='center'>
+               Sign In
+            </Heading>
 
-         <FormInput //
-            label='email'
-            type='email'
-            name='email'
-         />
-         <FormInput //
-            label='password'
-            type='password'
-            name='password'
-         />
+            <FormInput //
+               label='email'
+               type='email'
+               name='email'
+            />
+            <FormInput //
+               label='password'
+               type='password'
+               name='password'
+            />
 
-         <FormChoice to='/signup' linkText='Sign Up' buttonText='Sign In' />
-      </FormBox>
+            <FormChoice to='/signup' linkText='Sign Up' buttonText='Sign In' />
+         </FormBox>
+      </Grid>
    );
 }

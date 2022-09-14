@@ -11,7 +11,7 @@ function FormBox({ children, ...rest }: FormBoxProps) {
          as='form'
          maxW='500px'
          w='full'
-         h='100vh'
+         h='full'
          mx='auto'
          placeItems='center'
          {...rest}
@@ -20,8 +20,8 @@ function FormBox({ children, ...rest }: FormBoxProps) {
             as={Grid}
             bgColor='blackAlpha.200'
             px='8'
-            pt='12'
-            pb='24'
+            pt='8'
+            pb='16'
             borderRadius='4'
          >
             {children}
