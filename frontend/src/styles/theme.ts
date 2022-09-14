@@ -69,7 +69,6 @@ const theme = extendTheme({
       body: {
         color: 'neutral.500',
         bgColor: 'base',
-        px: 'up-to-max-content',
       },
       'nav, ul': {
         display: 'contents',
@@ -78,6 +77,9 @@ const theme = extendTheme({
         'li::marker': {
           color: 'transparent',
         },
+      },
+      '[data-limited-box]': {
+        px: 'up-to-max-content',
       },
     },
   },
