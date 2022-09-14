@@ -40,13 +40,13 @@ const createApi = <Method extends 'GET' | 'POST' | 'PUT' | 'DELETE'>(
       success?: unknown;
       error?: unknown;
     },
-    Parmas = UnsetResolve<T['params']>,
+    Params = UnsetResolve<T['params']>,
     Body = UnsetResolve<T['body']>,
     Response = UnsetResolve<T['success']>,
     ResponseOnError = UnsetResolve<T['error']>,
   >(
     pathname: string,
-    config?: ConfigRequest<Parmas, Body>,
+    config?: ConfigRequest<Params, Body>,
   ): Promise<ResolvedResponse<Response, ResponseOnError>> {
     try {
       const response = await axiosInstance({
