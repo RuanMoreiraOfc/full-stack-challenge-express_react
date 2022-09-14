@@ -81,6 +81,28 @@ const theme = extendTheme({
       '[data-limited-box]': {
         px: 'up-to-max-content',
       },
+      '[data-thin-scroller]': {
+        '--thumb-color': 'var(--chakra-colors-neutral-500)',
+        '--track-color': 'transparent',
+
+        msScrollbarArrowColor: 'transparent',
+        msScrollbarFaceColor: 'var(--thumb-color)',
+        msScrollbarHighlightColor: 'var(--track-color)',
+
+        scrollbarWidth: 'thin',
+        scrollbarColor: 'var(--thumb-color) var(--track-color)',
+
+        '&::-webkit-scrollbar': {
+          w: '8px',
+        },
+        '&::-webkit-scrollbar-thumb': {
+          background: 'var(--thumb-color)',
+          borderRadius: '100vw',
+        },
+        '&::-webkit-scrollbar-track': {
+          background: 'var(--track-color)',
+        },
+      },
     },
   },
 } as DefaultThemeType);
