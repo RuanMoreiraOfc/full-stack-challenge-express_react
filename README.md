@@ -18,23 +18,23 @@ Dictionary Fullstack Application, with user history and favorites route.
 
 ### Frontend ~18h
 
-[Vite]
-[React]
-[ChakraUi]
-[React Router DOM]
-[Axios]
-[JsCookie]
+- [Vite]
+- [React]
+- [ChakraUi]
+- [React Router DOM]
+- [Axios]
+- [JsCookie]
 
 ### Backend ~15h
 
-[Node]
-[Prisma]
-[Express]
-[Express async errors]
-[Axios]
-[Bcrypt]
-[JsonWebToken]
-[Swagger Ui Express]
+- [Node]
+- [Prisma]
+- [Express]
+- [Express async errors]
+- [Axios]
+- [Bcrypt]
+- [JsonWebToken]
+- [Swagger Ui Express]
 
 ## Do it Yourself
 
@@ -75,41 +75,41 @@ Obs.: you can create a postgres container in [railway][btn-railway]
 
 ### Frontend
 
-**[GET] /**
-**[GET] /signin**
-**[GET] /signup**
+- **[GET] /**
+- **[GET] /signin**
+- **[GET] /signup**
 
 #### Needs token
 
-**[GET] /view**
+- **[GET] /view**
 
 ### Backend
 
-**[GET] /api-docs**
-Only 2 routes documented
-**[GET] /**
-**[POST] /auth/signup**
-{
-"name": "User 1",
-"email": "example@email.com",
-"password": "test"
-}
-**[POST] /auth/signin**
-{
-"email": "example@email.com",
-"password": "test"
-}
+- **[GET] /api-docs**
+  Only 2 routes documented
+- **[GET] /**
+- **[POST] /auth/signup**
+  {
+  "name": "User 1",
+  "email": "example@email.com",
+  "password": "test"
+  }
+- **[POST] /auth/signin**
+  {
+  "email": "example@email.com",
+  "password": "test"
+  }
 
 #### Needs token
 
-**[GET] /entries/en**
-**[GET] /entries/en?search=fire&limit=4&page=1**
-**[GET] /entries/en/:word**
-**[POST] /entries/en/:word/favorite**
-**[DELETE] /entries/en/:word/unfavorite**
-**[GET] /user/me**
-**[GET] /user/me/history?limit=4&page=1**
-**[GET] /user/me/favorites?limit=4&page=1**
+- **[GET] /entries/en**
+- **[GET] /entries/en?search=fire&limit=4&page=1**
+- **[GET] /entries/en/:word**
+- **[POST] /entries/en/:word/favorite**
+- **[DELETE] /entries/en/:word/unfavorite**
+- **[GET] /user/me**
+- **[GET] /user/me/history?limit=4&page=1**
+- **[GET] /user/me/favorites?limit=4&page=1**
 
 <!-- VARIABLES -->
 
@@ -120,7 +120,7 @@ Only 2 routes documented
 [btn-repo]: https://github.com/ruanmoreiraofc/full-stack-challenge-express+react
 [btn-backend-preview]: https://fullstack-challenge-api.ruanmoreira.com
 [btn-frontend-preview]: https://fullstack-challenge.ruanmoreira.com
-[btn-frontend-preview-mirror]: fullstack-challenge-2022.netlify.app
+[btn-frontend-preview-mirror]: https://fullstack-challenge-2022.netlify.app
 
 <!-- TECHNOLOGIES -->
 
