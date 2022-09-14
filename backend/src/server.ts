@@ -16,17 +16,7 @@ populateDB();
 
 const app = express();
 app.use(express.json());
-app.use(
-  cors({
-    origin(origin, callback) {
-      if (origin?.startsWith('http://localhost:')) {
-        callback(null, true);
-      } else {
-        callback(new Error());
-      }
-    },
-  }),
-);
+app.use(cors());
 app.use(allRoutes);
 app.use(
   (err: Error, _request: Request, response: Response, next: NextFunction) => {
