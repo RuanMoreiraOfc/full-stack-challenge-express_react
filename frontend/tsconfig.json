@@ -25,6 +25,7 @@
       "@utils/*": ["src/utils/*"],
       "@middlewares/*": ["src/middlewares/*"],
       "@components/*": ["src/components/*"],
+      "@hooks/*": ["src/hooks/*"],
       "@pages/*": ["src/pages/*"],
     },
   },
