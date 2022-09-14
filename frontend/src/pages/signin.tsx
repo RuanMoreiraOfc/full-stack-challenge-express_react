@@ -3,8 +3,8 @@ import Cookies from 'js-cookie';
 
 import { apiPost } from '@services/api';
 
-import { useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useCallback } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useErrorToast from '@hooks/useErrorToast';
 
 import { Grid, Heading } from '@chakra-ui/react';
@@ -17,6 +17,7 @@ export default SignIn;
 
 function SignIn() {
    const { openToast } = useErrorToast();
+   const location = useLocation();
    const navigate = useNavigate();
 
    const submitHandler = useCallback(
@@ -56,6 +57,16 @@ function SignIn() {
       },
       [],
    );
+
+   useEffect(() => {
+      const state = location.state as any;
+
+      if (!state?.reason) {
+         return;
+      }
+
+      openToast({ title: String(state.reason) });
+   }, [location.state, openToast]);
 
    return (
       <Grid
