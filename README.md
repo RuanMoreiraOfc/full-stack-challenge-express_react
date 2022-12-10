@@ -8,11 +8,11 @@ Dictionary Fullstack Application, with user history and favorites route.
 
 > This is a challenge by Coodesh
 
-- Frontend [:eye: Preview][btn-frontend-preview]
+<!-- - Frontend [:eye: Preview][btn-frontend-preview] -->
 
-  - if link above broke [:eye: Preview][btn-frontend-preview-mirror]
+<!--   - if link above broke [:eye: Preview][btn-frontend-preview-mirror] -->
 
-- Backend [:eye: Preview][btn-backend-preview]
+<!-- - Backend [:eye: Preview][btn-backend-preview] -->
 
 ## Technologies
 
